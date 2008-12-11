@@ -1,0 +1,24 @@
+CheapChronic("today")
+
+Everything is in future context and using localtime. Case is insensitive.
+
+Other search terms:
+
+today
+tomorrow
+yesteday
+
+By Day:
+monday-sunday
+mon-sun
+
+Additional syntax:
+
+return the next day:
+next <day>
+this <day>
+this coming <day>
+
+return the next week:
+next week
+in <#> weeks
