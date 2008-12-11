@@ -68,9 +68,35 @@ describe "CheapChronic" do
     CheapChronic("next week").to_i.should == Time.now.to_i + 7.days
   end
   
-  it "should parse 'in <num> weeks'" do
-    10.times do |number|
-      CheapChronic("in #{number} weeks").to_i.should == Time.now.to_i + number.weeks
+  describe "in <interval> <units>" do
+    it "should parse 'in 1 hour'" do
+      CheapChronic("in 1 hour").to_i.should == Time.now.to_i + 1.hour
+    end
+  
+    it "should parse 'in <num> hours'" do
+      10.times do |number|
+        CheapChronic("in #{number} hours").to_i.should == Time.now.to_i + number.hours
+      end
+    end
+  
+    it "should parse 'in 1 day'" do
+      CheapChronic("in 1 day").to_i.should == Time.now.to_i + 1.day
+    end
+  
+    it "should parse 'in <num> days'" do
+      10.times do |number|
+        CheapChronic("in #{number} days").to_i.should == Time.now.to_i + number.days
+      end
+    end
+  
+    it "should parse 'in 1 week'" do
+      CheapChronic("in 1 week").to_i.should == Time.now.to_i + 1.week
+    end
+  
+    it "should parse 'in <num> weeks'" do
+      10.times do |number|
+        CheapChronic("in #{number} weeks").to_i.should == Time.now.to_i + number.weeks
+      end
     end
   end
 end

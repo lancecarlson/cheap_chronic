@@ -2,13 +2,21 @@ module CChronic
   module Tokens
     class << self      
       # Context
-      %w(yesterday today tomorrow week).each do |context|
+      %w(yesterday today tomorrow hour day week).each do |context|
         define_method(context) { Context.send(context) }
       end
 
       # Full days
       %w(sunday monday tuesday wednesday thursday friday saturday).each do |day|
         define_method(day) { Weekdays.time_for_day(day) }
+      end
+      
+      def hours(*args)
+        Context.hours(*args)
+      end
+      
+      def days(*args)
+        Context.days(*args)
       end
       
       def weeks(*args)
