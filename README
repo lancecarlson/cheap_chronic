@@ -1,4 +1,4 @@
-CheapChronic("today")
+CheapChronic.parse("today")
 
 Everything is in future context and using localtime. Case is insensitive.
 
@@ -6,7 +6,7 @@ Other search terms:
 
 today
 tomorrow
-yesteday
+yesterday
 
 By Day:
 monday-sunday
@@ -21,6 +21,8 @@ this coming <day>
 
 return the next week:
 next week
+
+"in" syntax:
 in <#> hours
 in <#> days
 in <#> weeks

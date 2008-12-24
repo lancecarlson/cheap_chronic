@@ -18,7 +18,7 @@ dist_dirs = [ "config", "lib", "spec" ]
 
 spec = Gem::Specification.new do |s|
   s.name = NAME
-  s.version = CChronic::VERSION
+  s.version = CheapChronic::VERSION
   s.platform = Gem::Platform::RUBY
   s.summary = SUMMARY
   s.description = DESCRIPTION
