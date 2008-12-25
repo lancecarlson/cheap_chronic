@@ -40,6 +40,10 @@ module CheapChronic
       CheapChronic::DAYS.include?(text)
     end
     
+    def month?(text)
+      CheapChronic::MONTHS.include?(text)
+    end
+    
     def unit?(text)
       CheapChronic::UNITS.include?(text)
     end

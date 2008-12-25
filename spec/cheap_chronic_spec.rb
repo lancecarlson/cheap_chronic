@@ -31,14 +31,14 @@ describe "CheapChronic" do
       end
     end
   
-    # it "should give the date with the current time when the upcoming day is specified shorthand (Mon-Sun)" do
-    #   i = 0
-    #   @short_days.each do |day|
-    #     time = CheapChronic.parse(day)
-    #     time.wday.should == i
-    #     i += 1
-    #   end
-    # end
+    it "should give the date with the current time when the upcoming day is specified shorthand (Mon-Sun)" do
+      i = 0
+      @short_days.each do |day|
+        time = CheapChronic.parse(day)
+        time.wday.should == i
+        i += 1
+      end
+    end
   
     # it "should handle messed up day acronymns" do
     #   day_indices = [0, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 6]
@@ -49,29 +49,27 @@ describe "CheapChronic" do
     #   end
     # end
   end
-#   
-#   describe "months" do
-#     it "should give the date with the current time when the upcoming month is specified (January-December)" do
-#       i = 1
-#       @full_months.each do |month|
-#         time = CheapChronic.parse(month)
-#         puts month
-#         puts time.inspect
-#         time.month.should == i
-#         i += 1
-#       end
-#     end
-#     
-#     # it "should give the date with the current time when the upcoming month is specified shorthand (Jan-Dec)" do
-#     #   i = 1
-#     #   @short_months.each do |month|
-#     #     time = CheapChronic(month)
-#     #     time.month.should == i
-#     #     i += 1
-#     #   end
-#     # end
-#   end
-#   
+  
+  describe "months" do
+    it "should give the date with the current time when the upcoming month is specified (January-December)" do
+      i = 1
+      @full_months.each do |month|
+        time = CheapChronic.parse(month)
+        time.month.should == i
+        i += 1
+      end
+    end
+    
+    it "should give the date with the current time when the upcoming month is specified shorthand (Jan-Dec)" do
+      i = 1
+      @short_months.each do |month|
+        time = CheapChronic.parse(month)
+        time.month.should == i
+        i += 1
+      end
+    end
+  end
+
   it "should parse 'this <day>'" do
     i = 0
     @full_days.each do |day|
@@ -94,16 +92,16 @@ describe "CheapChronic" do
     it "should parse 'next week'" do
       CheapChronic.parse("next week").to_i.should == Time.now.to_i + 7.days
     end
-    #   
-    # it "should parse 'next month'" do
-    #   pending("How to calculate varying days in months")
-    # end
+      
+    it "should parse 'next month'" do
+      CheapChronic.parse("next month").to_s.should == (DateTime.now >> 1).to_s
+    end
     
     it "should parse 'next <day>'" do
       next_wed = CheapChronic.parse("next wednesday")
       next_wed.wday.should == 3
-      next_wed.should > Time.now
-      next_wed.should < Time.now + 1.week
+      next_wed.should > DateTime.now
+      next_wed.should < DateTime.now + 1.week
     end
   end
   
@@ -134,7 +132,7 @@ describe "CheapChronic" do
   
     it "should parse 'in <num> weeks'" do
       10.times do |number|
-        CheapChronic.parse("in #{number} weeks").to_i.should == Time.now.to_i + number.weeks
+        CheapChronic.parse("in #{number} weeks").yday.should == ((Time.now + number.weeks).yday)
       end
     end
   end

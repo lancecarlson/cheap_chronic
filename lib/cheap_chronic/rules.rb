@@ -12,10 +12,19 @@ CheapChronic::Rule.new /(yesterday|today|tomorrow)/ do
 end
 
 # <monday-sunday>
-CheapChronic::Rule.new /(#{CheapChronic::DAYS.join("|")})/ do
+# <mon-sun>
+CheapChronic::Rule.new /^(#{CheapChronic::DAYS.join("|")})$/ do
   day = matches[0]
   
-  time_for_day(day)
+  time_for_next_weekday(day, now)
+end
+
+# <january-december>
+# <jan-dec>
+CheapChronic::Rule.new /^(#{CheapChronic::MONTHS.join("|")})$/ do
+  month = matches[0]
+  
+  time_for_next_month(month, now)
 end
 
 # in <quantity> <seconds/minutes/hours/days/weeks/months/years>
@@ -27,16 +36,20 @@ CheapChronic::Rule.new /in (\d+) (#{CheapChronic::UNITS.join("|")})/ do
 end
 
 # next <monday-sunday>
+# next <january-december>
 # next <second/minute/hour/day/week/month/year>
 # this <monday-sunday>
+# this <january-december>
 # this <second/minute/hour/day/week/month/year>
 CheapChronic::Rule.new /(next|this) (\w+)/ do
-  day_or_unit = matches[1]
+  day_or_month_unit = matches[1]
   
-  if day?(day_or_unit)
-    time_for_day(day_or_unit)
-  elsif unit?(day_or_unit)
-    time_for_next_unit(day_or_unit)
+  if day?(day_or_month_unit)
+    time_for_next_weekday(day_or_month_unit, now)
+  elsif month?(day_or_month_unit)
+    time_for_next_month(day_or_month_unit, now)
+  elsif unit?(day_or_month_unit)
+    time_for_next_unit(day_or_month_unit, now)
   else
     nil
   end

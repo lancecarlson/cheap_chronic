@@ -14,13 +14,11 @@ mon-sun
 
 Additional syntax:
 
-return the next day:
-next <day>
-this <day>
-this coming <day>
-
-return the next week:
+next saturday
+this friday
+this coming tuesday
 next week
+next day
 
 "in" syntax:
 in <#> hours

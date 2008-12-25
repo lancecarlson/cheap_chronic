@@ -2,9 +2,9 @@ require 'parsedate'
 
 module CheapChronic
   FULL_DAYS = %w(sunday monday tuesday wednesday thursday friday saturday)
-  SHORT_DAYS = %w(sun mon tue wed thu fri fat)
+  SHORT_DAYS = %w(sun mon tue wed thu fri sat)
   SHORTEST_DAYS = %w(su m tu w th f sa)
-  ODDBALL_DAYS = %w(tu tues thur thurs)
+  ODDBALL_DAYS = %w(tues thur thurs)
   DAYS = FULL_DAYS + SHORT_DAYS + SHORTEST_DAYS
   FULL_MONTHS = %w(january february march april may june july august september october november december)
   SHORT_MONTHS = %w(jan feb mar apr may jun jul aug sep oct nov dec)
